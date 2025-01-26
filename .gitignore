@@ -1,0 +1,7 @@
+reports/
+node_modules
+*.pyc
+__pycache__
+*.log
+.venv
+exposure-front/dist/
