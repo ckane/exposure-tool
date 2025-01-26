@@ -35,6 +35,22 @@ exposure-tool-1  | [2025-01-26 15:47:07 +0000] [13] [INFO] Booting worker with p
 exposure-tool-1  | [2025-01-26 15:47:07 +0000] [14] [INFO] Booting worker with pid: 14
 ```
 
+Note that, internally to the container, the API is listening on port `8001` and the `nginx` process running on port `8000`
+routes `/api/` traffic to it.
+
+## Running without Docker Compose
+
+It can be run without `docker compose`. In that event, to build:
+
+```sh
+docker build -t exposure-tool:latest .
+```
+
+And then to run (example below keeps it local and iteractive so ^C can easily shut it down):
+```sh
+docker run -p 8000:8000 -it exposure-tool:latest
+```
+
 # Accessing 
 
 Once running, the application can be accessed via a web browser at `http://localhost:8000`, or via the IP address of the host system on port `8000`. The
