@@ -77,9 +77,13 @@ Clicking on one of the assessments in the list will display a report of the defe
 # Notes
 
 - Application is written with a Python Flask back-end API, and a client-side React app for the UI
+- Listing of assessments is done by just showing the most recently-timestamped 10 - a fuller solution would use pagination implemented in the front and back-end
 - `nginx` handles routing inbound traffic either to the `gunicorn` server running the Flask-based API or serving the static content of the React UI
 - No authentication or user management is implemented, but it would make sense for the data set to be access-controlled by user account and groups
 - The application compares provided infrastructure JSON against a policy baseline and displays deviations from that base as "defects"
+- Back-end storage is a simple file tree, rather than a database. The current setup lends itself to adapting to an object store, which could then utilize data lake tech to achieve more complex analysis and reporting.
+- The application doesn't provide a means for lifecycle tracking of findings, but that would be a valuable addition to it
+- Expectation would be that a single user, or small team of users, would use this internally for pilot use, with the goal of usage driving more requirements
 
 # Policies
 
@@ -92,3 +96,6 @@ Each policy is written as Python code in [`/exposure-back/policies/policy_checke
 in there should be parsed from pulished structured policy specification documents. This would allow some external team/party to maintain the policies,
 and this tool would be able to regularly consume that dataset and then update assessments accordingly.
 
+This implementation simulates a handful of compliance requirements based upon some common "best practices" that I've gathered along the way, in order to
+demonstrate the action of grading a collection of varying infrastructure against a common checklist of policy requirements. The purpose would be to focus
+conversation on critical policy deviations.
