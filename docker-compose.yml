@@ -1,0 +1,8 @@
+services:
+  exposure-tool:
+    image: exposure-tool:latest
+    build: ./
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./reports:/data/reports
